@@ -1,0 +1,9 @@
+C:\Program Files (x86)\OptiTrack\Camera SDK\NatNetSDK\Samples\bin\x64\WinFormTestApp.exe.config
+C:\Program Files (x86)\OptiTrack\Camera SDK\NatNetSDK\Samples\WinFormsSample - Copy\obj\x64\Debug\WinFormTestApp.exe
+C:\Program Files (x86)\OptiTrack\Camera SDK\NatNetSDK\Samples\WinFormsSample - Copy\obj\x64\Debug\WinFormTestApp.pdb
+C:\Program Files (x86)\OptiTrack\Camera SDK\NatNetSDK\Samples\bin\x64\WinFormTestApp.exe
+C:\Program Files (x86)\OptiTrack\Camera SDK\NatNetSDK\Samples\bin\x64\WinFormTestApp.pdb
+C:\Program Files (x86)\OptiTrack\Camera SDK\NatNetSDK\Samples\WinFormsSample - Copy\obj\x64\Debug\WinFormsSampleVS2010.csprojResolveAssemblyReference.cache
+C:\Program Files (x86)\OptiTrack\Camera SDK\NatNetSDK\Samples\WinFormsSample - Copy\obj\x64\Debug\WinFormTestApp.Form1.resources
+C:\Program Files (x86)\OptiTrack\Camera SDK\NatNetSDK\Samples\WinFormsSample - Copy\obj\x64\Debug\WinFormTestApp.Properties.Resources.resources
+C:\Program Files (x86)\OptiTrack\Camera SDK\NatNetSDK\Samples\WinFormsSample - Copy\obj\x64\Debug\WinFormsSampleVS2010.csproj.GenerateResource.Cache
