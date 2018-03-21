@@ -34,6 +34,7 @@ using Microsoft.Xna.Framework;
 using WinFormTestApp.Properties;
 using System.Net.Sockets;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 /*
 *
@@ -1045,7 +1046,160 @@ namespace WinFormTestApp
                 return val;
             }
         }
-        #endregion
+    #endregion
+
+
+    //
+    //
+    //  None of the below has actually been tied into the program yet, adding it here so that it can be integrated in the future
+    //  - Need to add the message queue
+    //  - Planning on adding the init stuff to the connect() function, so that the initial messages get sent back and forth to set up everything *before* the motive frames start getting received and clogging the queue
+    //  - Once everything is set up, then the crop messages can be added to the queue. These can be generated in the... UpdateUI Function? Been a while since I worked on this last, I can't quite remember...
+    //
+
+    Queue<MessageContent> messageQueue;
+    private readonly SynchronizationContext synchronizationContext;
+    string ipAddressString = "10.10.123.191"; // This will need to be updated to the correct ip of the computer being used.
+
+
+    private void handleSockets()
+    {
+      Task.Factory.StartNew(() =>
+      {
+        Send();
+      });
+
+      Task.Factory.StartNew(() =>
+      {
+        Recieve();
+      });
     }
+
+    private async Task Send()
+    {
+      int i = 0;
+      Bitmap img = null;
+      ImageConverter converter = new ImageConverter();
+
+      try
+      {
+        IPAddress ipAd = IPAddress.Parse(ipAddressString);
+        // use local m/c IP address, and 
+        // use the same in the client
+
+        /* Initializes the Listener */
+        TcpListener myList = new TcpListener(ipAd, 8001);
+
+        /* Start Listeneting at the specified port */
+        myList.Start();
+
+        Console.Write("The server is running at port 8001...\n");
+        Console.Write("The local End point is  :" + myList.LocalEndpoint + "\n");
+        Console.Write("Waiting for a connection.....\n");
+        s = myList.AcceptSocket();
+        Console.Write("Connection accepted from " + s.RemoteEndPoint + "\n");
+
+        i = 0;
+        img = Resources.SecretImage;
+      }
+      catch (Exception e)
+      {
+        e = e;
+      }
+
+
+      while (true)
+      {
+        try
+        {
+          if (messageQueue.Count > 0)
+          {
+            MessageContent messageToSend = messageQueue.Dequeue();
+            s.Send(messageToSend.ContentTypeBytes);
+            s.Send(messageToSend.MessageSizeBytes);
+            s.Send(messageToSend.MessageBytes);
+          }
+        }
+        catch (Exception e)
+        {
+          e = e;
+        }
+
+
+      }
+    }
+
+
+    private async Task Recieve()
+    {
+      int flag = 0;
+
+      Stream stm = null;
+
+      Console.Write("Connecting... \n");
+
+      while (flag == 0)
+      {
+        try
+        {
+          IPAddress ipAd = IPAddress.Parse(ipAddressString);
+          // use local m/c IP address, and 
+          // use the same in the client
+
+          /* Initializes the Listener */
+          TcpClient tcpclnt = new TcpClient();
+
+          /* Start Listeneting at the specified port */
+          tcpclnt.Connect(ipAddressString, 8002);
+
+          stm = tcpclnt.GetStream();
+          flag = 1;
+        }
+        catch (Exception e)
+        {
+          e = e;
+        }
+      }
+
+      Console.Write("Connection Established\n");
+
+      while (true)
+      {
+        byte[] messageSizeBytes = new byte[4];
+        byte[] messageTypeBytes = new byte[1];
+        char messageType;
+        ImageConverter converter = new ImageConverter();
+
+        stm.Read(messageTypeBytes, 0, 1);
+
+        messageType = Encoding.ASCII.GetChars(messageTypeBytes)[0];
+
+        Console.Write(messageType.ToString());
+
+        MessageContent newMessage = new MessageContent();
+
+        if (messageType == 'R')
+        {
+
+          newMessage.ContentType = 'I';
+          newMessage.MessageBytes = (byte[])converter.ConvertTo(Resources.SecretImage, typeof(byte[]));
+
+          messageQueue.Enqueue(newMessage);
+
+        }
+        else if (messageType == 'P')
+        {
+          //newMessage.ContentType = 'T';
+
+        // Not sure what was supposed to happen here, but I'll leave it for now.
+
+        }
+
+
+      }
+    }
+
+
+  }
 
 }

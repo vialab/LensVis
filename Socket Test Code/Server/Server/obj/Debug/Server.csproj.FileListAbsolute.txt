@@ -28,3 +28,6 @@ C:\Users\Raven\Dropbox\Public\LensVis\Server\Server\bin\Debug\Server.exe
 C:\Users\Raven\Dropbox\Public\LensVis\Server\Server\bin\Debug\Server.pdb
 C:\Users\Raven\Dropbox\Public\LensVis\Server\Server\obj\Debug\Server.exe
 C:\Users\Raven\Dropbox\Public\LensVis\Server\Server\obj\Debug\Server.pdb
+C:\Users\Raven\Desktop\LensVisGit\Socket Test Code\Server\Server\bin\Debug\Server.exe.config
+C:\Users\Raven\Desktop\LensVisGit\Socket Test Code\Server\Server\obj\Debug\Server.exe
+C:\Users\Raven\Desktop\LensVisGit\Socket Test Code\Server\Server\obj\Debug\Server.pdb

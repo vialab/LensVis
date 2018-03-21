@@ -81,3 +81,6 @@ C:\Users\vialab\Desktop\Rhys\LensVisGit\LensVis\WinFormsSample\obj\x86\Debug\Win
 C:\Users\vialab\Desktop\Rhys\LensVisGit\LensVis\WinFormsSample\obj\x86\Debug\WinFormTestApp.exe
 C:\Users\vialab\Desktop\Rhys\LensVisGit\LensVis\WinFormsSample\obj\x86\Debug\WinFormTestApp.pdb
 C:\Users\vialab\Desktop\Rhys\LensVisGit\LensVis\WinFormsSample\obj\x86\Debug\WinFormsSample.csprojResolveAssemblyReference.cache
+C:\Users\Raven\Desktop\LensVisGit\Server\WinFormsSample\bin\x86\Debug\WinFormTestApp.exe.config
+C:\Users\Raven\Desktop\LensVisGit\Server\WinFormsSample\obj\x86\Debug\WinFormTestApp.exe
+C:\Users\Raven\Desktop\LensVisGit\Server\WinFormsSample\obj\x86\Debug\WinFormTestApp.pdb
