@@ -199,10 +199,10 @@ namespace Server
 
           messageQueue.Enqueue(newMessage);
 
-          Task.Factory.StartNew(() =>
-          {
-            rsend();
-          });
+          //Task.Factory.StartNew(() =>
+          //{
+          //  rsend();
+          //});
         }
         else if (messageType == 'P')
         {

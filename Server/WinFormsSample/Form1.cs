@@ -136,7 +136,10 @@ namespace WinFormTestApp
 
         PointF[] pastPoints = new PointF[4];
 
-        int count = 0;
+      string ipAddressString = "172.24.13.160"; // Server IP // This will need to be updated to the correct ip of the computer being used.
+      string ipAddressString2 = "172.24.13.160"; // Client IP
+
+    int count = 0;
         Socket s;
 
         #region stuff
@@ -228,34 +231,65 @@ namespace WinFormTestApp
 
             return 0;
         }
-
-        /// <summary>
-        /// Connect to a NatNet server (e.g. Motive)
-        /// </summary>
-        private void Connect()
+    #endregion
+    /// <summary>
+    /// Connect to a NatNet server (e.g. Motive)
+    /// </summary>
+    private void Connect()
         {
 
-            IPAddress ipAd = IPAddress.Parse("172.24.13.160");
-            // use local m/c IP address, and 
-            // use the same in the client
+          // Not tested
+          Task.Factory.StartNew(() =>
+          {
+            Send();
+          });
 
-            /* Initializes the Listener */
-            TcpListener myList = new TcpListener(ipAd, 8002);
-
-            /* Start Listeneting at the specified port */
-            myList.Start();
-
-            Console.WriteLine("The server is running at port 8002...");
-            Console.WriteLine("The local End point is  :" +
-                              myList.LocalEndpoint);
-            Console.WriteLine("Waiting for a connection.....");
-
-            s = myList.AcceptSocket();
-            Console.WriteLine("Connection accepted from " + s.RemoteEndPoint);
+          Task.Factory.StartNew(() =>
+          {
+            Recieve();
+          });
 
 
-            // [NatNet] connect to a NatNet server
-            int returnCode = 0;
+
+      // Sending...
+
+      //IPAddress ipAd = IPAddress.Parse(ipAddressString);
+
+      //TcpListener myList = new TcpListener(ipAd, 8001);
+
+      //myList.Start();
+
+      //Console.WriteLine("The server is running at port 8001...");
+      //Console.WriteLine("The local End point is  :" + myList.LocalEndpoint);
+      //Console.WriteLine("Waiting for a connection.....");
+
+      //s = myList.AcceptSocket();
+      //Console.WriteLine("Connection accepted from " + s.RemoteEndPoint);
+
+
+
+
+
+      // Receiving...
+
+      //IPAddress ipAd2 = IPAddress.Parse(ipAddressString2);
+
+      //TcpClient tcpclnt = new TcpClient();
+
+      //tcpclnt.Connect(ipAddressString2, 8002);
+      //Stream stm = null;
+      //stm = tcpclnt.GetStream();
+
+
+
+
+
+
+
+
+
+      // [NatNet] connect to a NatNet server
+      int returnCode = 0;
             string strLocalIP = "127.0.0.1";
             string strServerIP = "127.0.0.1";
             returnCode = m_NatNet.Initialize(strLocalIP, strServerIP);
@@ -283,7 +317,8 @@ namespace WinFormTestApp
             checkBoxConnect.Text = "Connect";
         }
 
-        private void checkBoxConnect_CheckedChanged(object sender, EventArgs e)
+    #region extra stuff
+    private void checkBoxConnect_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxConnect.Checked)
             {
@@ -1059,7 +1094,7 @@ namespace WinFormTestApp
 
     Queue<MessageContent> messageQueue;
     private readonly SynchronizationContext synchronizationContext;
-    string ipAddressString = "10.10.123.191"; // This will need to be updated to the correct ip of the computer being used.
+    ///string ipAddressString = "10.10.123.191"; 
 
 
     private void handleSockets()
@@ -1191,7 +1226,7 @@ namespace WinFormTestApp
         {
           //newMessage.ContentType = 'T';
 
-        // Not sure what was supposed to happen here, but I'll leave it for now.
+            // Not sure what was supposed to happen here, but I'll leave it for now.
 
         }
 
